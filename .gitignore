@@ -9,3 +9,5 @@ Makefile
 build/
 WordTsar.app/
 .qmake.stash
+wordtsar.pro.user
+.qmake.stash

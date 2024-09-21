@@ -9,7 +9,19 @@ Before you begin, ensure you have the following installed:
 - Qt (version 5 or higher)
 - GNU Make
 - C++ Compiler (GCC or Clang)
-- For Linux
+
+## Installation Instructions
+
+### Clone the Repository
+
+First, clone the repository:
+
+```bash
+git clone https://github.com/lvitals/WordTsar.git
+cd WordTsar
+```
+
+### For Linux
 
 1. **Install Required Packages**:
 
@@ -19,17 +31,7 @@ Depending on your Linux distribution, you can install the necessary packages usi
 sudo apt update sudo apt install qt5-qmake qtbase5-dev build-essential
 ```
 
-2. **Clone the Repository**:
-
-If you haven't already, clone the repository:
-
-```bash
-git clone <repository-url>
-
-cd WordTsar
-```
-
-3. **Run qmake**:
+2. **Run qmake**:
 
 Generate the Makefile with qmake:
 
@@ -37,14 +39,15 @@ Generate the Makefile with qmake:
 qmake wordtsar.pro
 ```
 
-4. **Build the Project**:
+3. **Build the Project**:
 
 Use make to compile the project:
 
 ```bash
 make
 ```
-5. **Run WordTsar**:
+
+4. **Run WordTsar**:
 
 After a successful build, you can run WordTsar:
 
@@ -52,7 +55,7 @@ After a successful build, you can run WordTsar:
 ./WordTsar
 ```
 
-## For macOS (Unix)
+### For macOS (Unix)
 
 1. **Install Required Packages**:
 
@@ -62,17 +65,7 @@ You can use Homebrew to install the necessary packages:
 brew install qt
 ```
 
-2. **Clone the Repository**:
-
-If you haven't already, clone the repository:
-
-```bash
-git clone <repository-url> 
-
-cd WordTsar
-```
-
-3. **Run qmake**:
+2. **Run qmake**:
 
 Generate the Makefile with qmake:
 
@@ -80,7 +73,7 @@ Generate the Makefile with qmake:
 qmake wordtsar.pro
 ```
 
-4. **Build the Project**:
+3. **Build the Project**:
 
 Use make to compile the project:
 
@@ -88,7 +81,7 @@ Use make to compile the project:
 make
 ```
 
-5. **Run WordTsar**:
+4. **Run WordTsar**:
 
 After a successful build, you can run WordTsar:
 
