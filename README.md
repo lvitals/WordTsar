@@ -1,6 +1,6 @@
 # WordTsar
 
-WordTsar is a modernized text editor inspired by the classic WordStar. This guide will help you install and build WordTsar on Linux and macOS (Unix).
+WordTsar is a modernized text editor inspired by the classic WordStar.
 
 ## Installation Instructions
 
