@@ -24,6 +24,7 @@ RCC_DIR = build/rcc
 
 # Enable C++17
 CONFIG += c++17
+CONFIG += sdk_no_version_check
 
 # Definitions for release and debug modes
 CONFIG(release, debug|release){
