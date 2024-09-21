@@ -1,45 +1,41 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2020-03-22T14:04:23
-#
-#-------------------------------------------------
-
 QT       += core gui printsupport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # QMAKE_LFLAGS += -no-pie
 QMAKE_CXXFLAGS += -Wno-deprecated-declarations -Werror=return-type
 
-
 TARGET = WordTsar
 TEMPLATE = app
 
+# Output directory for binaries (executables)
+DESTDIR = build
 
-# The following define makes your compiler emit warnings if you use
-# any feature of Qt which has been marked as deprecated (the exact warnings
-# depend on your compiler). Please consult the documentation of the
-# deprecated API in order to know how to port your code away from it.
-#DEFINES += QT_DEPRECATED_WARNINGS
+# Output directory for object files (.o)
+OBJECTS_DIR = build/obj
+
+# Output directory for MOC files
+MOC_DIR = build/moc
+
+# Output directory for UI files
+UI_DIR = build/ui
+
+# Output directory for RCC (Resources) files
+RCC_DIR = build/rcc
+
+# Enable C++17
+CONFIG += c++17
+
+# Definitions for release and debug modes
 CONFIG(release, debug|release){
     DEFINES += NDEBUG
 }
-
 
 CONFIG(debug, release|debug){
     DEFINES += DEBUG
 }
 
-
-# You can also make your code fail to compile if you use deprecated APIs.
-# In order to do so, uncomment the following line.
-# You can also select to disable deprecated APIs only up to a certain version of Qt.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
-CONFIG += c++17
-
 equals(DO_TEST, 1){
     error(DO TEST DEFINED)
-
 }
 
 unix:!macx {
@@ -149,9 +145,3 @@ RESOURCES += \
 
 DISTFILES += \
     src/files/docx/readme.txt
-
-
-
-
-
-

@@ -1,0 +1,11 @@
+*.pro.user
+*.o
+moc_*
+qrc_*
+ui_*
+*.ws
+Makefile
+.vscode
+build/
+WordTsar.app/
+.qmake.stash
