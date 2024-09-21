@@ -1689,13 +1689,14 @@ void cEditorCtrl::MoveUp(void)
     LINE_T currentline = mLayout->GetLineFromPosition(pos);
     LINE_T nextlineoffset = 1;
 
-    if (GetShowDot() == false)
+    if (!GetShowDot())
     {
         for (LINE_T loop = currentline - 1; loop >= 0; loop--)
         {
             LINE_T line = loop;
             PARAGRAPH_T para = mLayout->GetParagraphFromLine(line);
-            if (mLayout->mParagraphLayout[static_cast<size_t>(para)].isCommand || mLayout->mParagraphLayout[static_cast<size_t>(para)].isComment)
+            if (mLayout->mParagraphLayout[static_cast<size_t>(para)].isCommand || 
+                mLayout->mParagraphLayout[static_cast<size_t>(para)].isComment)
             {
                 nextlineoffset++;
             }
@@ -1706,23 +1707,23 @@ void cEditorCtrl::MoveUp(void)
         }
     }
 
-    if (currentline != 0)
+    if (currentline - nextlineoffset >= 0)
     {
         POSITION_T curlinepos = mLayout->GetLineStartPosition(currentline);
         POSITION_T newlinepos = mLayout->GetLineStartPosition(currentline - nextlineoffset);
         POSITION_T endlinepos = mLayout->GetLineEndPosition(currentline - nextlineoffset);
 
-        // if the new line is shorter than the old lines carat position
+        // Adjust cursor position based on the new line length
         if (endlinepos - newlinepos < pos - curlinepos)
         {
-            pos = endlinepos;
+            pos = endlinepos; // Move to the end of the new line
         }
         else
         {
             pos = newlinepos + (pos - curlinepos);
         }
 
-        mDocument.SetPosition((pos));
+        mDocument.SetPosition(pos);
         ScrollIntoView(Qt::Key_Up);
     }
 }

@@ -1195,8 +1195,14 @@ PARAGRAPH_T cDocument::GetNumberofParagraphs(void)
 /////////////////////////////////////////////////////////////////////////////
 void cDocument::GetParagraphStartandEnd(const PARAGRAPH_T paragraph, POSITION_T &start, POSITION_T &end)
 {
-    MY_ASSERT(paragraph >= 0)
-    MY_ASSERT(paragraph < static_cast<POSITION_T>(mParagraphData.size()))
+    // Check if the paragraph index is within valid bounds
+    if (paragraph < 0 || paragraph >= static_cast<POSITION_T>(mParagraphData.size())) {
+        // Handle the error by returning default values or throwing an exception
+        start = end = -1; // or any value that makes sense for your context
+        return;
+    }
+
+    // If the index is valid, continue
     auto iter = mParagraphData.begin() + paragraph;
     start = iter->index;
 
@@ -1204,6 +1210,7 @@ void cDocument::GetParagraphStartandEnd(const PARAGRAPH_T paragraph, POSITION_T 
     size_t numgraphemes = iter->offsets.size(); // GraphemeCount(iter->buffer, offsets);
     end = iter->index + static_cast<POSITION_T>(numgraphemes) - 1;
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 ///
@@ -1219,13 +1226,18 @@ PARAGRAPH_T cDocument::GetParagraphFromPosition(POSITION_T position)
 #ifdef DEBUG
     POSITION_T tsize = GetTextSize();
 #endif
-    MY_ASSERT(position >= 0)
-    MY_ASSERT(position <= tsize)
+
+    // Check if the position is valid
+    if (position < 0 || position > tsize) {
+        // Handle invalid position, e.g., return a default value or throw an exception
+        return -1; // or any appropriate error value
+    }
 
     mTempParagraph.index = position;
 
     auto iter = lower_bound(mParagraphData.begin(), mParagraphData.end(), mTempParagraph, ParagraphCompare);
-    // handle things if we are at end of line
+
+    // Handle the case if we are at the end of the line
     if (iter != mParagraphData.end())
     {
         if (iter->index > position)
@@ -1237,14 +1249,18 @@ PARAGRAPH_T cDocument::GetParagraphFromPosition(POSITION_T position)
         }
     }
 
+    // Calculate the paragraph index
     PARAGRAPH_T pos = static_cast<PARAGRAPH_T>(std::distance(mParagraphData.begin(), iter));
+
+    // Ensure the paragraph index is within valid bounds
     if (static_cast<size_t>(pos) >= mParagraphData.size())
     {
-        pos = static_cast<POSITION_T>(mParagraphData.size()) - 1;
+        pos = static_cast<PARAGRAPH_T>(mParagraphData.size()) - 1;
     }
 
     return pos;
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 ///
